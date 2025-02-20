@@ -10,9 +10,9 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			System.out.println("Input A: ");
+			System.out.println("Input num A: ");
 			double a = scan.nextDouble();
-			System.out.println("Input B: ");
+			System.out.println("Input num B: ");
 			double b = scan.nextDouble();
 
 			System.out.printf("\n%.2f + %.2f = %.2f", a, b, calc.sum(a,b));
