@@ -1,6 +1,7 @@
 package test.prog;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
 
 public class Calculator {
@@ -13,26 +14,37 @@ public class Calculator {
 
     }
 
-    protected double getExp(String s) {
-        String [] lst = null;
-        lst = s.split(" ");
-
-        this.a = Double.parseDouble(lst[0]);
-        this.operation = lst[1];
-        this.b = Double.parseDouble(lst[2]);
-
-
-        switch (operation) {
-            case "+":
-                return sum();
-            case "-":
-                return sub();
-            case "/":
-                return div();
-            case "*":
-                return mul();
+    protected double process() {
+        try {
+            switch (operation) {
+                case "+":
+                    return sum();
+                case "-":
+                    return sub();
+                case "/":
+                    return div();
+                case "*":
+                    return mul();
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка при вычислениях: " + e);
         }
         return Double.MIN_VALUE;
+    }
+
+    protected double getExp(String s) {
+        String [] lst = null;
+        try {
+            lst = s.split(" ");
+
+            this.a = Double.parseDouble(lst[0]);
+            this.operation = lst[1];
+            this.b = Double.parseDouble(lst[2]);
+
+        } catch (Exception e) {
+            System.out.println("Ошибка при парсинге строки: " + e);
+        }
+        return process();
     }
 
     protected double sum() {
@@ -44,7 +56,10 @@ public class Calculator {
     }
 
     protected double div() {
-        // n / 0 = infinity
+        if (b == 0) {
+            System.out.println("На 0 делить нельзя!");
+            return Double.MIN_VALUE;
+        }
         return a / b;
     }
 
