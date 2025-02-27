@@ -44,6 +44,7 @@ public class Calculator {
     }
 
     protected double div() {
+        // n / 0 = infinity
         return a / b;
     }
 
