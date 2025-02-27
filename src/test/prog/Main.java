@@ -8,17 +8,13 @@ public class Main {
     public static void main(String[] args) {
 		Calculator calc = new Calculator();
 		Scanner scan = new Scanner(System.in);
+		double res = 0;
 
 		try {
-			System.out.println("Input num A: ");
-			double a = scan.nextDouble();
-			System.out.println("Input num B: ");
-			double b = scan.nextDouble();
-
-			System.out.printf("\n%.2f + %.2f = %.2f", a, b, calc.sum(a,b));
-			System.out.printf("\n%.2f - %.2f = %.2f", a, b, calc.sub(a,b));
-			System.out.printf("\n%.2f * %.2f = %.2f", a, b, calc.mul(a,b));
-			System.out.printf("\n%.2f / %.2f = %.2f", a, b, calc.div(a,b));
+			System.out.println("Введите выражение для вычисления: ");
+			res = calc.getExp(scan.nextLine());
+			if (res == Double.MIN_VALUE) System.out.println("Произошла ошибка при вычислении!");
+			else System.out.printf("= %.2f",res);
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
 		}
